@@ -132,5 +132,9 @@ Writing objects: 100% (3/3), 303 bytes | 151.00 KiB/s, done.
 Total 3 (delta 0), reused 0 (delta 0), pack-reused 0
 To https://github.com/testerBartek/GIT
    02277b3..221b7f7  master -> master
+   
+origin - refers to the GitHub copy of our repository
+master - refers to our default and only branch in the repository
+
 
    
