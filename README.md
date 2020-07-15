@@ -136,5 +136,7 @@ To https://github.com/testerBartek/GIT
 origin - refers to the GitHub copy of our repository
 master - refers to our default and only branch in the repository
 
-testing something
+
+
+
    
