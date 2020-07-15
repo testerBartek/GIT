@@ -1,1 +1,1 @@
-test difftool
+test differences
