@@ -1,6 +1,1 @@
-Test Git Start
-123
-Testing branches, checkout, merge, diffs with difftool.
-Testing branches, checkout, merge, diffs with difftool.
-Testing branches, checkout, merge, diffs with difftool.
-Testing branches, checkout, merge, diffs with difftool.
+2nd time
