@@ -1,0 +1,250 @@
+{
+	"id": "a6521ba4-fe7b-41a0-849c-76463351f82b",
+	"name": "GitHub",
+	"timestamp": "2020-08-19T12:25:34.411Z",
+	"collection_id": "f02f8cda-ab83-4379-946e-d5f4c19a994e",
+	"folder_id": 0,
+	"environment_id": "71b63d10-e5a4-4587-84ed-0f2d2e6586ea",
+	"totalPass": 10,
+	"totalFail": 0,
+	"results": [
+		{
+			"id": "446a29a7-15f3-49ae-8c2d-b3e9322332fc",
+			"name": "Connect GitHub ",
+			"url": "https://api.github.com/user/repos",
+			"time": 517,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Status code is 200": true
+			},
+			"testPassFailCounts": {
+				"Status code is 200": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				517
+			],
+			"allTests": [
+				{
+					"Status code is 200": true
+				}
+			]
+		},
+		{
+			"id": "2b714cea-3930-4def-8275-be8ac8adf3ae",
+			"name": "Create a new REPO",
+			"url": "https://api.github.com/user/repos",
+			"time": 1575,
+			"responseCode": {
+				"code": 201,
+				"name": "Created"
+			},
+			"tests": {
+				"Status code is 201": true,
+				"Repos name": true,
+				"Public Repo": true
+			},
+			"testPassFailCounts": {
+				"Status code is 201": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Repos name": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Public Repo": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				1575
+			],
+			"allTests": [
+				{
+					"Status code is 201": true,
+					"Repos name": true,
+					"Public Repo": true
+				}
+			]
+		},
+		{
+			"id": "8b58160b-5624-46a2-9cca-2837549e16a2",
+			"name": "Check public Repo",
+			"url": "https://api.github.com/repos/testerBartek/Test-Repository",
+			"time": 515,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Status code is 200": true
+			},
+			"testPassFailCounts": {
+				"Status code is 200": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				515
+			],
+			"allTests": [
+				{
+					"Status code is 200": true
+				}
+			]
+		},
+		{
+			"id": "eea07354-be01-49d9-8e20-b4b478a6a726",
+			"name": "Create Issue",
+			"url": "https://api.github.com/repos/testerBartek/Test-Repository/issues",
+			"time": 492,
+			"responseCode": {
+				"code": 201,
+				"name": "Created"
+			},
+			"tests": {
+				"Status code is 201": true
+			},
+			"testPassFailCounts": {
+				"Status code is 201": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				492
+			],
+			"allTests": [
+				{
+					"Status code is 201": true
+				}
+			]
+		},
+		{
+			"id": "df2452b8-b220-493d-b1b5-1fac7267659f",
+			"name": "Check created Issue",
+			"url": "https://api.github.com/repos/testerBartek/Test-Repository/issues/1",
+			"time": 247,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Status code is 200": true,
+				"Name of issue": true
+			},
+			"testPassFailCounts": {
+				"Status code is 200": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Name of issue": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				247
+			],
+			"allTests": [
+				{
+					"Status code is 200": true,
+					"Name of issue": true
+				}
+			]
+		},
+		{
+			"id": "d6b88f5b-a1ac-4908-b0fb-12f51ee62e26",
+			"name": "Delete GitHub Repo",
+			"url": "https://api.github.com/repos/testerBartek/Test-Repository",
+			"time": 0,
+			"responseCode": {},
+			"tests": {
+				"Status code is 204": true
+			},
+			"testPassFailCounts": {
+				"Status code is 204": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				0
+			],
+			"allTests": [
+				{
+					"Status code is 204": true
+				}
+			]
+		},
+		{
+			"id": "c41ba4cb-deda-45e2-aa7d-ea49846911d3",
+			"name": "Check deleted Repo",
+			"url": "https://api.github.com/repos/testerBartek/Test-Repository",
+			"time": 194,
+			"responseCode": {
+				"code": 404,
+				"name": "Not Found"
+			},
+			"tests": {
+				"Status code is 404": true
+			},
+			"testPassFailCounts": {
+				"Status code is 404": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				194
+			],
+			"allTests": [
+				{
+					"Status code is 404": true
+				}
+			]
+		}
+	],
+	"count": 1,
+	"totalTime": 3540,
+	"collection": {
+		"requests": [
+			{
+				"id": "446a29a7-15f3-49ae-8c2d-b3e9322332fc",
+				"method": "GET"
+			},
+			{
+				"id": "2b714cea-3930-4def-8275-be8ac8adf3ae",
+				"method": "POST"
+			},
+			{
+				"id": "8b58160b-5624-46a2-9cca-2837549e16a2",
+				"method": "GET"
+			},
+			{
+				"id": "eea07354-be01-49d9-8e20-b4b478a6a726",
+				"method": "POST"
+			},
+			{
+				"id": "df2452b8-b220-493d-b1b5-1fac7267659f",
+				"method": "GET"
+			},
+			{
+				"id": "d6b88f5b-a1ac-4908-b0fb-12f51ee62e26",
+				"method": "DELETE"
+			},
+			{
+				"id": "c41ba4cb-deda-45e2-aa7d-ea49846911d3",
+				"method": "GET"
+			}
+		]
+	}
+}

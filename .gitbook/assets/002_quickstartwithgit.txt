@@ -1,0 +1,19 @@
+$ cd projects
+$ ls
+$ git init gitFromLocalRepo
+$ ls
+$ cd gitFromLocalRepo
+$ ls -al
+$ cd .git/
+$ ls
+$ git status
+$ npp testLocalRepo.txt #notepad++ should be openned, and write sth, save, and exit.
+$ ls #.txt file is created
+$ git status #untracked file testLocalRepo
+$ git add testLocalRepo.txt
+$ git status # changes to be comitted
+$ git commit -m "Create a new Remote Repo from Local Repo"
+$ git status #nothing to commit, working tree clean
+$ cd ..
+$ rm -rf testLocalRepo
+$ ls #repo is removed.

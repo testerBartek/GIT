@@ -1,0 +1,440 @@
+{
+	"info": {
+		"_postman_id": "f02f8cda-ab83-4379-946e-d5f4c19a994e",
+		"name": "GitHub",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Connect GitHub ",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "6605f031-9366-4d11-b5d0-db49f0ed6054",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "{{githubPassword}}",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "{{githubUserName}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://api.github.com/user/repos",
+					"protocol": "https",
+					"host": [
+						"api",
+						"github",
+						"com"
+					],
+					"path": [
+						"user",
+						"repos"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create a new REPO",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "f40b1e34-9781-40fd-90ff-17e28ad182f1",
+						"exec": [
+							"pm.test(\"Status code is 201\", function () {\r",
+							"    pm.response.to.have.status(201);\r",
+							"});\r",
+							"\r",
+							"const response = pm.response.json();\r",
+							"\r",
+							"pm.test(\"Repos name\", function () {\r",
+							"    pm.expect(response.name).to.eql(\"Test-Repository\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Public Repo\", function () {\r",
+							"    pm.expect(response.private).to.eql(false);\r",
+							"});\r",
+							"\r",
+							"pm.environment.set(\"repo\", \"Test-Repository\");\r",
+							"pm.environment.set(\"owner\", (response.owner.login));"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "{{githubPassword}}",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "{{githubUserName}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\" : \"Test-Repository\",\r\n    \"description\" : \"This is a test repository created by Postman\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://api.github.com/user/repos",
+					"protocol": "https",
+					"host": [
+						"api",
+						"github",
+						"com"
+					],
+					"path": [
+						"user",
+						"repos"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Check public Repo",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "68a99b53-d563-44f9-b957-66964ddc97c6",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://api.github.com/repos/:owner/:repo",
+					"protocol": "https",
+					"host": [
+						"api",
+						"github",
+						"com"
+					],
+					"path": [
+						"repos",
+						":owner",
+						":repo"
+					],
+					"variable": [
+						{
+							"key": "owner",
+							"value": "{{owner}}"
+						},
+						{
+							"key": "repo",
+							"value": "{{repo}}"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create Issue",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "9ee54a36-0f21-42c5-947c-21843ea66df3",
+						"exec": [
+							"pm.test(\"Status code is 201\", function () {\r",
+							"    pm.response.to.have.status(201);\r",
+							"});\r",
+							"\r",
+							"const response = pm.response.json();\r",
+							"\r",
+							"pm.environment.set(\"issuesNum\", (response.number));"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "{{githubPassword}}",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "{{githubUserName}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"title\" : \"Found a bug\",\r\n    \"body\" : \"This issue has been automatically created by Postman.\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://api.github.com/repos/:{owner}/:{repo}/issues",
+					"protocol": "https",
+					"host": [
+						"api",
+						"github",
+						"com"
+					],
+					"path": [
+						"repos",
+						":{owner}",
+						":{repo}",
+						"issues"
+					],
+					"variable": [
+						{
+							"key": "{owner}",
+							"value": "{{owner}}"
+						},
+						{
+							"key": "{repo}",
+							"value": "{{repo}}"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Check created Issue",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "02a095e2-6fd9-497d-a33f-0d28244cfa56",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Name of issue\", function () {\r",
+							"    const response = pm.response.json();\r",
+							"    pm.expect(response.title).to.eql(\"Found a bug\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://api.github.com/repos/:{owner}/:{repo}/issues/:{issue_number}",
+					"protocol": "https",
+					"host": [
+						"api",
+						"github",
+						"com"
+					],
+					"path": [
+						"repos",
+						":{owner}",
+						":{repo}",
+						"issues",
+						":{issue_number}"
+					],
+					"variable": [
+						{
+							"key": "{owner}",
+							"value": "{{owner}}"
+						},
+						{
+							"key": "{repo}",
+							"value": "{{repo}}"
+						},
+						{
+							"key": "{issue_number}",
+							"value": "{{issuesNum}}"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete GitHub Repo",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "9394a2d0-8bf2-43d3-8cee-bc7bd9e9965f",
+						"exec": [
+							"pm.test(\"Status code is 204\", function () {\r",
+							"    pm.response.to.have.status(204);\r",
+							"});\r",
+							"\r",
+							"pm.environment.unset(\"issuesNum\");"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "{{githubPassword}}",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "{{githubUserName}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "https://api.github.com/repos/:{owner}/:{repo}",
+					"protocol": "https",
+					"host": [
+						"api",
+						"github",
+						"com"
+					],
+					"path": [
+						"repos",
+						":{owner}",
+						":{repo}"
+					],
+					"variable": [
+						{
+							"key": "{owner}",
+							"value": "{{owner}}"
+						},
+						{
+							"key": "{repo}",
+							"value": "{{repo}}"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Check deleted Repo",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "d18a8d1f-a73e-418c-8761-addac6846925",
+						"exec": [
+							"pm.test(\"Status code is 404\", function () {\r",
+							"    pm.response.to.have.status(404);\r",
+							"});\r",
+							"\r",
+							"pm.environment.unset(\"repo\");\r",
+							"pm.environment.unset(\"owner\");"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "username",
+							"value": "{{githubUserName}}",
+							"type": "string"
+						},
+						{
+							"key": "password",
+							"value": "{{githubPassword}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://api.github.com/repos/:{owner}/:{repo}",
+					"protocol": "https",
+					"host": [
+						"api",
+						"github",
+						"com"
+					],
+					"path": [
+						"repos",
+						":{owner}",
+						":{repo}"
+					],
+					"variable": [
+						{
+							"key": "{owner}",
+							"value": "{{owner}}"
+						},
+						{
+							"key": "{repo}",
+							"value": "{{repo}}"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}

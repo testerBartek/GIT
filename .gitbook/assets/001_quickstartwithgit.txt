@@ -1,0 +1,14 @@
+$ cd projects #your path
+$ pwd
+$ git clone https://github.com/testerBartek/GIT
+$ cd GIT
+$ git status
+$ echo "Test Git" >> test.txt
+$ ls
+$ cat test.txt
+$ git status
+$ git add test.txt
+$ git status
+$ git commit -m "Add a test.txt file"
+$ git status
+$ git push origin master
